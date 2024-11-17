@@ -1,0 +1,116 @@
+body {
+    background-image: url("gojo.jpg");
+    background-size: cover;
+}
+
+.container {
+    padding: 20px;
+    background-image: url("gojo.jpg");
+    background-size: cover;
+    border-radius: 8px;
+    max-width: 1000px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+audio{
+    display: none;
+}
+.container h1 {
+    font-size: 35px;
+    color: #3d85fd;
+    font-weight: 400;
+    font-family: Arial, sans-serif;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 217, 255, 0.4));
+    line-height: 0.7em;
+    -webkit-backdrop-filter: blur(15px);
+    text-align: center;
+    animation: glowing-text 5s linear infinite;
+    outline: none;
+}
+
+@keyframes glowing-text {
+    0%, 18%, 30%, 60%, 65.1%, 80%, 90.1%, 95% {
+        color: #3d85fd;
+        text-shadow: none;
+    }
+    18.1%, 21%, 30.1%, 50%, 60.1%, 80.1%, 90%, 100% {
+        color: #cad6d6;
+        text-shadow: 0 0 10px #3d85fd, 0 0 20px #3d85fd, 0 0 40px #3d85fd, 0 0 80px #3d85fd;
+    }
+}
+
+svg {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    height: 100px;
+    font-family: 'Alex Murphy Solid', sans-serif;
+    letter-spacing: 10px;
+}
+
+svg text {
+    font-size: 110px;
+    stroke-width: 2px;
+    fill: #d3621c83;
+    stroke-linejoin: round;
+    stroke-dasharray: 80;
+    stroke: #ffd700;;
+    filter: blur(1px);
+    animation: dash-animate 2s linear infinite;
+}
+
+@keyframes dash-animate {
+    100% {
+        stroke-dashoffset: 160;
+    }
+}
+
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: conic-gradient(from var(--angle), #0c63e7, #1b1b1b, #d11149,#1b1b1b, #0c63e7);
+    z-index: -1;
+    overflow: hidden;
+}
+
+.container::before {
+    filter: blur(20px);
+    opacity: 0.7;
+    z-index: -2;
+}
+
+.container::after {
+    animation: glowing-border 3.5s linear infinite;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 53deg;
+    inherits: false;
+}
+
+@keyframes glowing-border {
+    from {
+        --angle: 53deg;
+    }
+    to {
+        --angle: 413deg;
+    }
+}
+
+.container:hover::before{
+    animation: blur-effect 3.5s linear infinite,glowing-border 3.5s linear infinite;
+}
+
+@keyframes blur-effect{
+    from{
+        filter:blur(20px);
+    }to{
+        filter:blur(19px)
+    }
+}
